@@ -9,3 +9,4 @@ launch_cheese_app <- function() {
   }
   shiny::runApp(appDir, display.mode = "normal")
 }
+
