@@ -1,0 +1,98 @@
+---
+title: "Analyze and Visualize Cheese Data with Shiny"
+output: rmarkdown::html_vignette
+---
+
+# Introduction
+
+This vignette demonstrates the usage of three functions designed for analyzing and visualizing cheese data:
+1. **Data cleaning**: `data_cleaning.R` is used for cleaning the raw cheese data.
+2. **Analysis functions**: `analysis_functions.R` provides analytical tools for summarizing and visualizing cheese characteristics.
+3. **Shiny app launcher**: `launch_app.R` launches an interactive Shiny app for a more in-depth exploration of the cheese data.
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+# Load the functions
+source("data_cleaning.R")
+source("analysis_functions.R")
+source("launch_app.R")
+```
+
+## Data Cleaning
+
+### Example 1: Clean Raw Cheese Data
+
+The `data_cleaning.R` script provides functions to clean the raw cheese dataset by handling missing values, converting data types, and standardizing text.
+
+```{r data-cleaning}
+# Load raw cheese data
+cheese_raw <- read.csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-06-04/cheeses.csv')
+
+# Clean the data using the custom function from data_cleaning.R
+cheese_data_clean <- clean_cheese_data(cheese_raw)
+head(cheese_data_clean)
+
+```
+
+**Explanation:** This function removes missing values, converts the fat content to numeric, and standardizes the country names to ensure consistent analysis.
+
+## Analysis Functions
+
+The `analysis_functions.R` script includes functions for summarizing and visualizing cheese characteristics, such as fat content and texture.
+
+### Example 1: Average Fat Content by Country
+
+```{r avg-fat-country}
+# Calculate average fat content by country
+avg_fat_by_country <- avg_fat_content_by_country(cheese_data_clean)
+print(head(avg_fat_by_country, 10))
+```
+
+**Explanation:** This function calculates the average fat content for each country and returns a sorted list of the top countries with the highest average fat content.
+
+### Example 2: Average Fat Content by Texture
+
+```{r avg-fat-texture}
+# Calculate average fat content by texture
+avg_fat_by_texture <- avg_fat_content_by_texture(cheese_data_clean)
+print(head(avg_fat_by_texture, 10))
+
+```
+
+**Explanation:** This function computes the average fat content for different cheese textures, highlighting how texture influences fat levels.
+
+### Example 3: Visualize Fat Content
+
+```{r plot-fat-content}
+# Plot average fat content by country
+plot_avg_fat_by_country(avg_fat_by_country)
+```
+
+**Explanation:** This visualization function displays a bar chart of the average fat content for the top countries, offering a quick view of regional cheese characteristics.
+
+## Launching the Shiny App
+
+The `launch_app.R` script contains the `launch_cheese_app()` function, which starts an interactive Shiny app to explore the cheese data further.
+
+### Example: Launch the Shiny App
+
+```{r launch-app, eval=FALSE}
+# Launch the interactive Shiny app
+launch_cheese_app()
+
+```
+
+**Explanation:** This command launches a Shiny app that allows users to interact with the cheese data, filter by country or texture, and visualize fat content dynamically.
+
+## Conclusion
+
+This vignette provides an overview of the three main scripts in the project: data cleaning, analysis, and interactive visualization. Together, these tools offer a comprehensive approach to exploring cheese characteristics, helping users better understand global cheese trends.
+
+```
+
