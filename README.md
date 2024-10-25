@@ -26,7 +26,7 @@ Depends: R, shiny, tidyverse, dplyr, stringr, etc.
 
 ## About Installation
 
-You can install the `global.cheese.analysis` package from GitHub using the `devtools` package:
+You can install the `global.cheese.analysis` package from GitHub using the `global.cheese.analysis` package:
 
 ```R
 devtools::install_github("https://github.com/ETC5523-2024/assignment-4-packages-and-shiny-apps-shuwang0405.git")
