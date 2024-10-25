@@ -1,11 +1,10 @@
 ---
 title: "Analyze and Visualize Cheese Data with Shiny"
 output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Analyze and Visualize Cheese Data with Shiny}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
-
-#' \VignetteIndexEntry{Analyze and Visualize Cheese Data with Shiny}
-#' \VignetteEngine{knitr::rmarkdown}
-#' \usepackage[utf8]{inputenc}
 
 
 
