@@ -1,0 +1,72 @@
+---
+title: "Analyze and Visualize Cheese Data with Shiny"
+output: rmarkdown::html_vignette
+---
+
+#' \VignetteIndexEntry{Analyze and Visualize Cheese Data with Shiny}
+#' \VignetteEngine{knitr::rmarkdown}
+#' \usepackage[utf8]{inputenc}
+
+
+
+# Introduction
+
+This vignette demonstrates the usage of three functions designed for analyzing and visualizing cheese data:
+1. **Data cleaning**: The `clean_cheese_data()` function is used for cleaning the raw cheese data.
+2. **Analysis functions**: The `analyze_fat_by_country()` function provides analytical tools for summarizing and visualizing cheese characteristics.
+3. **Shiny app launcher**: The `launch_cheese_app()` function launches an interactive Shiny app for a more in-depth exploration of the cheese data.
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+# Load the functions (use relative paths)
+source("/Users/wangshu/Desktop/assignment-4-packages-and-shiny-apps-shuwang0405/global.cheese.analysis/R/data_cleaning.R")
+source("/Users/wangshu/Desktop/assignment-4-packages-and-shiny-apps-shuwang0405/global.cheese.analysis/R/analysis_functions.R")
+source("/Users/wangshu/Desktop/assignment-4-packages-and-shiny-apps-shuwang0405/global.cheese.analysis/R/launch_app.R")
+
+
+# Load necessary libraries
+library(dplyr)
+library(stringr)
+library(tidyverse)
+```
+
+## Data Cleaning
+
+### Example: Clean Raw Cheese Data
+
+The `clean_cheese_data()` function handles missing values, converts fat content to numeric format, and standardizes country names.
+
+```{r data-cleaning}
+# Load raw cheese data
+cheese_raw <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-06-04/cheeses.csv')
+
+# Clean the data using the custom function
+cheese_data_clean <- clean_cheese_data(cheese_raw)
+head(cheese_data_clean)
+```
+
+## Analyze Fat Content by Country
+
+The `analyze_fat_by_country()` function calculates the average fat content of cheese by country.
+
+```{r avg-fat-country}
+# Calculate average fat content by country
+avg_fat_by_country <- analyze_fat_by_country(cheese_data_clean)
+print(head(avg_fat_by_country, 10))
+```
+
+## Launch the Shiny App
+
+The `launch_cheese_app()` function launches a Shiny app for interactive data exploration.
+
+```{r, eval = FALSE}
+# Launch the Shiny app (this command is not run in the vignette)
+launch_cheese_app()
+```
+
