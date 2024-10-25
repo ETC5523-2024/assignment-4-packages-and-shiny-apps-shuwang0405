@@ -2,79 +2,83 @@
 
 ------------------------------------------------------------------------
 
-**Title: shinyVect**
+**Title: global.cheese.analysis**
 
 Version: 0.0.0.9000
 
 Author: Shu Wang
 
-Description: Open a shiny and process some vectors
+Description: Analyze and visualize cheese data using Shiny.
 
 Encoding: UTF-8
 
-Depends: R, shiny, tidyverse, misty and so on
+Depends: R, shiny, tidyverse, dplyr, stringr, etc.
 
 ------------------------------------------------------------------------
 
 ## The goals for the Package
 
--   provide a data set, named `honeyproduction`, for the practice of the package;
-
--   build a function to launch the shiny app developed in the preceding assignment;
-
--   create other procedures to process single and dual vectors and return the associated results;
+- Provide a dataset, named `cheeses`, for practicing the functionalities of the package.
+- Build a function to launch the Shiny app developed for cheese analysis.
+- Create other procedures to process and analyze cheese data, returning associated results.
 
 ------------------------------------------------------------------------
 
 ## About Installation
 
-You can install the `shinyVect` package from GitHub using the `devtools` package:
+You can install the `global.cheese.analysis` package from GitHub using the `devtools` package:
 
+```R
+devtools::install_github("https://github.com/ETC5523-2024/assignment-4-packages-and-shiny-apps-shuwang0405.git")
 ```
-devtools::install_github("https://github.com/ETC5523-2023/rpkg-shuwang0405.git")
-```
 
-To load the package, the following steps are needed to obey:
+To load the `global.cheese.analysis` package, follow these steps:
 
-1.  load the package `devtools` by using the argument `library(devtools)`;
-2.  execute the functions `load_all()` and `install()` orderly;
-3.  execute the function `installed.packages()` to check the installation outcomes.
+1. Load the `devtools` package using the command:
+   ```R
+   library(devtools)
+   ```
 
-------------------------------------------------------------------------
+2. Execute the functions `load_all()` and `install()` in order:
+   ```R
+   load_all()   # Loads all functions and data in the package
+   install()    # Installs the package
+   ```
+
+3. Use the function `installed.packages()` to check the installation outcomes:
+   ```R
+   installed.packages()  # Lists installed packages to confirm successful installation
+   ```
+
+
 
 ## Some Examples about the Usage
 
-> The functions in the package provided are: `openshiny` , `vectorView`, and `duovectorView` and the related HELP information can be accessed by executing `?function` or `help(function)` arguments. Each of them should be used according the following examples:
+> The functions provided in the package are: `launch_cheese_app()`, `clean_cheese_data()`, and `analyze_fat_by_country()`. The related HELP information can be accessed by executing `?function` or `help(function)`. Each of them should be used according to the following examples:
 
-> > the function `openshiny()`
+> > The function `launch_cheese_app()`
 
-    openshiny(ui = ui, server = server)
+```R
+launch_cheese_app()
+```
 
-> > the function `vectorView()`
+> > The function `clean_cheese_data()`
 
-    # create some vectors
-    x = c('a', 'a', 'b', 'n', 'n', 'n', 'n'); 
-    xx = as.factor(x); 
-    y = sample(5:409, 224); 
-    yy = sample(5:409, 2)
+```R
+# Load raw cheese data
+cheese_raw <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-06-04/cheeses.csv')
 
-    ## execute the function as:
-    vectorView(x);
-    vectorView(xx);
-    vectorView(y);
-    vectorView(yy);
+# Clean the data using the custom function
+cheese_data_clean <- clean_cheese_data(cheese_raw)
+head(cheese_data_clean)
+```
 
-> > the function `duovectorView()`
+> > The function `analyze_fat_by_country()`
 
-    # create some vectors
+```R
+# Analyze average fat content by country
+avg_fat_by_country <- analyze_fat_by_country(cheese_data_clean)
+print(head(avg_fat_by_country, 10))
+```
 
-    x = honeyproduction$state; 
-    y = honeyproduction$totalprod; 
-    z = honeyproduction\$stocks; 
-    xx = x[1:10]
 
-    ## executive the fucntion
-
-    duovectorView(y, z); 
-    duovectorView(x, z); 
-    duovectorView(xx, xx)

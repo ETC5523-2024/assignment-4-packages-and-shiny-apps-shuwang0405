@@ -50,7 +50,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/shinyVect_help.html">Analyze and Visualize Cheese Data with Shiny</a>
+      <a href="articles/Analyze-and-Visualize-Cheese-Data-with-Shiny.html">Analyze and Visualize Cheese Data with Shiny</a>
     </li>
   </ul>
 </li>
@@ -71,81 +71,83 @@
 <div class="page-header"><h1 id="instructions-on-the-package">Instructions on the Package<a class="anchor" aria-label="anchor" href="#instructions-on-the-package"></a>
 </h1></div>
 <hr>
-<p><strong>Title: shinyVect</strong></p>
+<p><strong>Title: global.cheese.analysis</strong></p>
 <p>Version: 0.0.0.9000</p>
 <p>Author: Shu Wang</p>
-<p>Description: Open a shiny and process some vectors</p>
+<p>Description: Analyze and visualize cheese data using Shiny.</p>
 <p>Encoding: UTF-8</p>
-<p>Depends: R, shiny, tidyverse, misty and so on</p>
+<p>Depends: R, shiny, tidyverse, dplyr, stringr, etc.</p>
 <hr>
 <div class="section level2">
 <h2 id="the-goals-for-the-package">The goals for the Package<a class="anchor" aria-label="anchor" href="#the-goals-for-the-package"></a>
 </h2>
 <ul>
-<li><p>provide a data set, named <code>honeyproduction</code>, for the practice of the package;</p></li>
-<li><p>build a function to launch the shiny app developed in the preceding assignment;</p></li>
-<li><p>create other procedures to process single and dual vectors and return the associated results;</p></li>
+<li>Provide a dataset, named <code>cheeses</code>, for practicing the functionalities of the package.</li>
+<li>Build a function to launch the Shiny app developed for cheese analysis.</li>
+<li>Create other procedures to process and analyze cheese data, returning associated results.</li>
 </ul>
 <hr>
 </div>
 <div class="section level2">
 <h2 id="about-installation">About Installation<a class="anchor" aria-label="anchor" href="#about-installation"></a>
 </h2>
-<p>You can install the <code>shinyVect</code> package from GitHub using the <code>devtools</code> package:</p>
-<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"https://github.com/ETC5523-2023/rpkg-shuwang0405.git"</span><span class="op">)</span></span></code></pre>
-<p>To load the package, the following steps are needed to obey:</p>
+<p>You can install the <code>global.cheese.analysis</code> package from GitHub using the <code>devtools</code> package:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"https://github.com/ETC5523-2024/assignment-4-packages-and-shiny-apps-shuwang0405.git"</span><span class="op">)</span></span></code></pre></div>
+<p>To load the <code>global.cheese.analysis</code> package, follow these steps:</p>
 <ol style="list-style-type: decimal">
-<li>load the package <code>devtools</code> by using the argument <code><a href="https://devtools.r-lib.org/" class="external-link">library(devtools)</a></code>;</li>
-<li>execute the functions <code>load_all()</code> and <code>install()</code> orderly;</li>
-<li>execute the function <code><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">installed.packages()</a></code> to check the installation outcomes.</li>
+<li>
+<p>Load the <code>devtools</code> package using the command:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span></code></pre></div>
+</li>
+<li>
+<p>Execute the functions <code><a href="https://devtools.r-lib.org/reference/load_all.html" class="external-link">load_all()</a></code> and <code><a href="https://devtools.r-lib.org/reference/install.html" class="external-link">install()</a></code> in order:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://devtools.r-lib.org/reference/load_all.html" class="external-link">load_all</a></span><span class="op">(</span><span class="op">)</span>   <span class="co"># Loads all functions and data in the package</span></span>
+<span><span class="fu"><a href="https://devtools.r-lib.org/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="op">)</span>    <span class="co"># Installs the package</span></span></code></pre></div>
+</li>
+<li>
+<p>Use the function <code><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">installed.packages()</a></code> to check the installation outcomes:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">installed.packages</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># Lists installed packages to confirm successful installation</span></span></code></pre></div>
+</li>
 </ol>
-<hr>
 </div>
 <div class="section level2">
 <h2 id="some-examples-about-the-usage">Some Examples about the Usage<a class="anchor" aria-label="anchor" href="#some-examples-about-the-usage"></a>
 </h2>
 <blockquote>
-<p>The functions in the package provided are: <code>openshiny</code> , <code>vectorView</code>, and <code>duovectorView</code> and the related HELP information can be accessed by executing <code>?function</code> or <code>help(function)</code> arguments. Each of them should be used according the following examples:</p>
+<p>The functions provided in the package are: <code>launch_cheese_app()</code>, <code>clean_cheese_data()</code>, and <code>analyze_fat_by_country()</code>. The related HELP information can be accessed by executing <code>?function</code> or <code>help(function)</code>. Each of them should be used according to the following examples:</p>
 </blockquote>
 <blockquote>
 <blockquote>
-<p>the function <code>openshiny()</code></p>
+<p>The function <code>launch_cheese_app()</code></p>
 </blockquote>
 </blockquote>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">openshiny</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">launch_cheese_app</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <blockquote>
 <blockquote>
-<p>the function <code>vectorView()</code></p>
+<p>The function <code>clean_cheese_data()</code></p>
 </blockquote>
 </blockquote>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># create some vectors</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'a'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'n'</span>, <span class="st">'n'</span>, <span class="st">'n'</span>, <span class="st">'n'</span>); </span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>xx <span class="ot">=</span> <span class="fu">as.factor</span>(x); </span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">409</span>, <span class="dv">224</span>); </span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>yy <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">409</span>, <span class="dv">2</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="do">## execute the function as:</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="fu">vectorView</span>(x);</span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">vectorView</span>(xx);</span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="fu">vectorView</span>(y);</span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="fu">vectorView</span>(yy);</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Load raw cheese data</span></span>
+<span><span class="va">cheese_raw</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-06-04/cheeses.csv'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Clean the data using the custom function</span></span>
+<span><span class="va">cheese_data_clean</span> <span class="op">&lt;-</span> <span class="fu">clean_cheese_data</span><span class="op">(</span><span class="va">cheese_raw</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cheese_data_clean</span><span class="op">)</span></span></code></pre></div>
 <blockquote>
 <blockquote>
-<p>the function <code>duovectorView()</code></p>
+<p>The function <code>analyze_fat_by_country()</code></p>
 </blockquote>
 </blockquote>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># create some vectors</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>x <span class="ot">=</span> honeyproduction<span class="sc">$</span>state; </span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>y <span class="ot">=</span> honeyproduction<span class="sc">$</span>totalprod; </span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>z <span class="ot">=</span> honeyproduction\<span class="sc">$</span>stocks; </span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>xx <span class="ot">=</span> x[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="do">## executive the fucntion</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="fu">duovectorView</span>(y, z); </span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="fu">duovectorView</span>(x, z); </span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="fu">duovectorView</span>(xx, xx)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Analyze average fat content by country</span></span>
+<span><span class="va">avg_fat_by_country</span> <span class="op">&lt;-</span> <span class="fu">analyze_fat_by_country</span><span class="op">(</span><span class="va">cheese_data_clean</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">avg_fat_by_country</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
   </div>

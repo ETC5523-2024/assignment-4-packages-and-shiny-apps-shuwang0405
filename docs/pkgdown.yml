@@ -2,6 +2,6 @@ pandoc: '3.2'
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  shinyVect_help: shinyVect_help.html
-last_built: 2024-10-25T12:37Z
+  Analyze-and-Visualize-Cheese-Data-with-Shiny: Analyze-and-Visualize-Cheese-Data-with-Shiny.html
+last_built: 2024-10-25T13:41Z
 
