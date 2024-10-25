@@ -34,9 +34,9 @@ devtools::install_github("https://github.com/ETC5523-2024/assignment-4-packages-
 
 To load the `global.cheese.analysis` package, follow these steps:
 
-1. Load the `devtools` package using the command:
+1. Load the `lobal.cheese.analysis` package using the command:
    ```R
-   library(devtools)
+   library(lobal.cheese.analysis)
    ```
 
 2. Execute the functions `load_all()` and `install()` in order:
